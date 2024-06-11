@@ -18,33 +18,22 @@ public class excelReadandRight {
         };
 
         try {
-            // Create a new Excel workbook
             Workbook workbook = new XSSFWorkbook();
-
-            // Create a new sheet with the name "Sheet1"
             Sheet sheet = workbook.createSheet("Sheet1");
-
-            // Write column headers
             Row headerRow = sheet.createRow(0);
             for (int i = 0; i < headers.length; i++) {
                 Cell cell = headerRow.createCell(i);
                 cell.setCellValue(headers[i]);
             }
-
-            // Write data rows
             for (int i = 0; i < data.length; i++) {
                 Row row = sheet.createRow(i + 1);
                 for (int j = 0; j < data[i].length; j++) {
                     row.createCell(j).setCellValue(data[i][j]);
                 }
             }
-
-            // Write the workbook to a file
             FileOutputStream fileOut = new FileOutputStream("output.xlsx");
             workbook.write(fileOut);
             fileOut.close();
-
-            // Close the workbook
             workbook.close();
             System.out.println("Excel file has been created successfully!");
 
